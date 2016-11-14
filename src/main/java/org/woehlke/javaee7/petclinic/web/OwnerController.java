@@ -8,7 +8,9 @@ import org.woehlke.javaee7.petclinic.entities.Owner;
 import org.woehlke.javaee7.petclinic.entities.Pet;
 import org.woehlke.javaee7.petclinic.entities.PetType;
 import org.woehlke.javaee7.petclinic.entities.Visit;
+import org.woehlke.javaee7.petclinic.entities.CheckIn;
 import org.woehlke.javaee7.petclinic.services.OwnerService;
+
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -16,6 +18,7 @@ import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 
 /**
  * Created with IntelliJ IDEA.
@@ -56,11 +59,25 @@ public class OwnerController implements Serializable {
     private long petTypeId;
 
     private Visit visit;
+    
+    private CheckIn checkin;
+    
     private int scrollerPage;
+
+   
+    public OwnerController() {
+
+    }
+  
+   @PostConstruct
+    public void init() {
+    checkin = new CheckIn();
+    }
 
     public Visit getVisit() {
         return visit;
     }
+
 
     public void setVisit(Visit visit) {
         this.visit = visit;
@@ -201,6 +218,17 @@ public class OwnerController implements Serializable {
         log.info("owner2: "+this.owner.toString());
         return "showOwner.jsf";
     }
+    
+     public String saveCheckIn(){
+        this.checkin.setPet(this.pet);
+        this.pet.addCheckIn(this.checkin);
+        ownerService.addCheckIn(this.checkin);
+        log.info("owner1: " + this.owner.toString());
+        long ownerId = this.owner.getId();
+        this.owner = this.ownerDao.findById(ownerId);
+        log.info("owner2: "+this.owner.toString());
+        return "showOwner.jsf";
+    }
 
     public void setScrollerPage(int scrollerPage) {
         this.scrollerPage = scrollerPage;
@@ -209,4 +237,16 @@ public class OwnerController implements Serializable {
     public int getScrollerPage() {
         return scrollerPage;
     }
+
+    public CheckIn getCheckin() {
+        return checkin;
+    }
+
+    public void setCheckin(CheckIn checkin) {
+        this.checkin = checkin;
+    }
+    
+    
+    
+    
 }
