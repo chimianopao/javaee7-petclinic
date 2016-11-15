@@ -26,6 +26,13 @@ public class CheckIn implements Comparable<CheckIn> {
     @Temporal( TemporalType.DATE )
     private Date date;
 
+    @NotNull
+    @Column(name = "checkout_date")
+    @Temporal( TemporalType.DATE )
+    private Date dateFinal;
+
+    
+    
     @NotEmpty
     @Column(name = "description")
     private String description;
@@ -66,6 +73,17 @@ public class CheckIn implements Comparable<CheckIn> {
         this.pet = pet;
     }
 
+    public Date getDateFinal() {
+        return dateFinal;
+    }
+
+    public void setDateFinal(Date dateFinal) {
+        this.dateFinal = dateFinal;
+    }
+
+    
+    
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -93,6 +111,7 @@ public class CheckIn implements Comparable<CheckIn> {
         return "CheckIn{" +
                 "id=" + id +
                 ", date=" + date +
+                ", dateFinal=" + dateFinal +
                 ", description='" + description + '\'' +
                 '}';
     }

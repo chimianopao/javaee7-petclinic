@@ -77,7 +77,7 @@
                             
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="#{msg.date}"/>
+                                    <h:outputText value="Check in date"/>
                                 </f:facet>
                                 <h:outputText id="date" value="#{checkin.date}">
                                     <f:convertDateTime type="date" dateStyle="medium"/>
@@ -85,6 +85,17 @@
                                 <f:facet name="footer">
                                     <h:commandLink id="editPet" action="#{ownerController.editPetForm(ownersPet.id)}" >#{msg.editPet}</h:commandLink>
                                 </f:facet>
+                            </h:column>
+                            
+                            
+                             <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Check out date"/>
+                                </f:facet>
+                                <h:outputText id="dateFinal" value="#{checkin.dateFinal}">
+                                    <f:convertDateTime type="date" dateStyle="medium"/>
+                                </h:outputText>
+                              
                             </h:column>
                         
                              <h:column>

@@ -33,14 +33,22 @@
                 </h:panelGroup>
 
                 <h:panelGrid id="grid2" columns="2" >
-                    <h:outputLabel value="#{msg.date}" for="visitDate" />
+                    <h:outputLabel value="Check in date" for="visitDate" />
                     <rich:calendar id="visitDate" locale="#{language.localeCode}"
                                    value="#{ownerController.checkin.date}"/>
+                    
+                    <h:outputLabel value="Check out date" for="visitDateFinal" />
+                    <rich:calendar id="visitDateFinal" locale="#{language.localeCode}"
+                                   value="#{ownerController.checkin.dateFinal}"/>
+                    
+                    
                     <h:outputLabel value="#{msg.description}" for="visitDescription" />
                     <h:inputText id="visitDescription" styleClass="form-control"
                                  value="#{ownerController.checkin.description}" />
                     <h:commandButton id="save" action="#{ownerController.saveCheckIn}" value="#{msg.save}" />
                 </h:panelGrid>
+                
+                 
 
                 <h4>Previous Check Ins</h4>
                 <h:dataTable id="previousVisitsTable" value="#{ownerController.pet.checkin}" var="petsVisit" styleClass="table table-striped">
