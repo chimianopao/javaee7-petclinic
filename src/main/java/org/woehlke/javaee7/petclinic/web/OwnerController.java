@@ -19,6 +19,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import org.woehlke.javaee7.petclinic.dao.VisitHotelDao;
 
 /**
  * Created with IntelliJ IDEA.
@@ -44,6 +45,9 @@ public class OwnerController implements Serializable {
 
     @EJB
     private VisitDao visitDao;
+    
+    @EJB
+    private VisitHotelDao visitHotelDao;
 
     @EJB
     private OwnerService ownerService;
@@ -65,14 +69,8 @@ public class OwnerController implements Serializable {
     private int scrollerPage;
 
    
-    public OwnerController() {
-
-    }
   
-   @PostConstruct
-    public void init() {
-    checkin = new CheckIn();
-    }
+   
 
     public Visit getVisit() {
         return visit;
@@ -206,6 +204,13 @@ public class OwnerController implements Serializable {
         this.petTypeId = this.pet.getType().getId();
         this.visit = new Visit();
         return "addVisitToPet.jsf";
+    }
+    
+    public String addCheckInToPetForm(long petId){
+        this.pet = petDao.findById(petId);
+        this.petTypeId = this.pet.getType().getId();
+        this.checkin = new CheckIn();
+        return "addVisitHotel.jsf";
     }
 
     public String saveVisit(){

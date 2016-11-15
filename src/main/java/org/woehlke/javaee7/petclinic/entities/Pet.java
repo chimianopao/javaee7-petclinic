@@ -45,7 +45,7 @@ public class Pet implements Comparable<Pet> {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
     private Set<Visit> visits = new HashSet<Visit>();
 
-      @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
     private Set<CheckIn> checkin = new HashSet<CheckIn>();
 
     public List<CheckIn> getCheckin() {
@@ -61,9 +61,6 @@ public class Pet implements Comparable<Pet> {
         this.checkin = checkin;
     }
     
-    
-      
-      
       
     public void addVisit(Visit visit) {
         visits.add(visit);

@@ -90,7 +90,7 @@ public class CheckIn implements Comparable<CheckIn> {
 
     @Override
     public String toString() {
-        return "Visit{" +
+        return "CheckIn{" +
                 "id=" + id +
                 ", date=" + date +
                 ", description='" + description + '\'' +
